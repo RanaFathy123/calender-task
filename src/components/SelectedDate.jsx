@@ -1,0 +1,70 @@
+"use client";
+import { CalendarContext } from "@/context/CalenderContext";
+import Link from "next/link";
+import { useContext } from "react";
+import { memo } from "react";
+
+const SelectedDate = () => {
+  const { events } = useContext(CalendarContext);
+  console.log(events);
+
+  return (
+    <>
+      {events.length == 0 && (
+        <div className="h-screen flex flex-col justify-center items-center gap-3">
+          <div className="text-3xl font-bold">No Selected Date</div>
+          <Link
+            className="bg-slate-900 text-white p-3 rounded-lg font-bold "
+            href="/calender-pick"
+          >
+            Pick Date
+          </Link>
+        </div>
+      )}
+      <div>
+        <div className="overflow-x-auto">
+          <table className="min-w-full bg-white border border-gray-200 rounded-lg shadow-md">
+            <thead>
+              <tr>
+                <th className="py-3 px-6 bg-gray-100 text-gray-700 text-center text-lg font-bold border-b border-gray-300">
+                  Event
+                </th>
+                <th className="py-3 px-6 bg-gray-100 text-gray-700 text-center text-lg font-bold border-b border-gray-300">
+                  Selected Date
+                </th>
+              </tr>
+            </thead>
+            <tbody>
+              {events.length > 0 ? (
+                events.map((event, index) => (
+                  <tr
+                    key={index}
+                    className="bg-gray-50 hover:bg-gray-100 transition duration-150"
+                  >
+                    <td className="py-4 px-6 border-b text-center border-gray-300 text-sm text-gray-800">
+                      {`${event.title} ${index + 1}` }
+                    </td>
+                    <td className="py-4 px-6 border-b text-center border-gray-300 text-sm text-gray-800">
+                      {new Date(event.date).toLocaleDateString() }
+                    </td>
+                  </tr>
+                ))
+              ) : (
+                <tr>
+                  <td
+                    colSpan="2"
+                    className="py-4 px-6 text-center text-gray-500"
+                  >
+                    No events selected
+                  </td>
+                </tr>
+              )}
+            </tbody>
+          </table>
+        </div>
+      </div>
+    </>
+  );
+};
+
+export default memo(SelectedDate);
