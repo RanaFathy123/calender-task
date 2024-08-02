@@ -19,9 +19,10 @@ const Calender = () => {
         end: "dayGridMonth,timeGridWeek,timeGridDay",
       }}
       height="80vh"
-      selectable
+      selectable={true}
       select={addEvent}
       events={events}
+      eventClick={addEvent}
     />
   );
 };
