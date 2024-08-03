@@ -42,7 +42,7 @@ const SelectedDate = () => {
                     className="bg-gray-50 hover:bg-gray-100 transition duration-150"
                   >
                     <td className="py-4 px-6 border-b text-center border-gray-300 text-sm text-gray-800">
-                      {`${event.title} ${index + 1}`}
+                      {`${event.title}`}
                     </td>
                     <td className="py-4 px-6 border-b text-center border-gray-300 text-sm text-gray-800">
                       {(event.date)}

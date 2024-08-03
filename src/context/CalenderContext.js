@@ -14,7 +14,10 @@ export const CalendarProvider = ({ children }) => {
     { title: "Project Deadline", date: "2024-08-12" },
     { title: "Workshop", date: "2024-08-20" },
   ]);
-
+  const [eventData, setEventData] = useState({ title: "", date: "" });
+  const handleAddEvent = () => {
+    setEvents([...events,eventData ]);
+  };
   const addEvent = (event) => {
     const date = new Date();
     const year = date.getFullYear();
@@ -40,7 +43,7 @@ export const CalendarProvider = ({ children }) => {
   };
 
   return (
-    <CalendarContext.Provider value={{ events, addEvent }}>
+    <CalendarContext.Provider value={{ events, addEvent,eventData,handleAddEvent,setEventData }}>
       {children}
     </CalendarContext.Provider>
   );
