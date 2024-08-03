@@ -45,7 +45,7 @@ const SelectedDate = () => {
                       {`${event.title} ${index + 1}`}
                     </td>
                     <td className="py-4 px-6 border-b text-center border-gray-300 text-sm text-gray-800">
-                      {new Date(event.date).toLocaleDateString()}
+                      {(event.date)}
                     </td>
                   </tr>
                 ))}

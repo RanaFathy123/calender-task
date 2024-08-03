@@ -2,3 +2,10 @@
 @tailwind components;
 @tailwind utilities;
 
+@media(width < 768px) {
+    .fc .fc-toolbar {
+        display: flex;
+        flex-direction: column;
+      }
+}
+
