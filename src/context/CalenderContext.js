@@ -25,8 +25,8 @@ export const CalendarProvider = ({ children }) => {
     day = day < 10 ? `0${day}` : day;
 
     const formattedDate = `${year}-${month}-${day}`;
-    if (formattedDate <= eventData.date) {
-      setEvents([...events,eventData ]);
+    if (formattedDate <= eventData.date && eventData.title != "") {
+      setEvents([...events, eventData]);
     } else {
       Swal.fire({
         icon: "error",
@@ -34,7 +34,6 @@ export const CalendarProvider = ({ children }) => {
         text: "This Date Not Avaliable",
       });
     }
-
   };
   const addEvent = (event) => {
     const date = new Date();
@@ -61,7 +60,9 @@ export const CalendarProvider = ({ children }) => {
   };
 
   return (
-    <CalendarContext.Provider value={{ events, addEvent,eventData,handleAddEvent,setEventData }}>
+    <CalendarContext.Provider
+      value={{ events, addEvent, eventData, handleAddEvent, setEventData }}
+    >
       {children}
     </CalendarContext.Provider>
   );
