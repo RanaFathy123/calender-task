@@ -1,6 +1,6 @@
 "use client";
 // context/CalendarContext.js
-import React, { createContext, useCallback, useContext, useState } from "react";
+import React, { createContext, useCallback, useState } from "react";
 import Swal from "sweetalert2";
 
 // Create a Context
@@ -38,6 +38,9 @@ export const CalendarProvider = ({ children }) => {
     }
     setEventData({ title: "", date: "" });
   };
+  // enhance performance
+  useCallback(handleAddEvent, []);
+
   // add event with select
   const addEvent = (event) => {
     if (formattedDate <= event.startStr) {
@@ -50,10 +53,25 @@ export const CalendarProvider = ({ children }) => {
       });
     }
   };
+    // enhance performance
+  useCallback(addEvent, []);
+  // clear selected Date
+  const resetSelectedDate = () => {
+    setEvents([]);
+  };
+    // enhance performance
+  useCallback(resetSelectedDate, []);
 
   return (
     <CalendarContext.Provider
-      value={{ events, addEvent, eventData, handleAddEvent, setEventData }}
+      value={{
+        events,
+        addEvent,
+        eventData,
+        handleAddEvent,
+        setEventData,
+        resetSelectedDate,
+      }}
     >
       {children}
     </CalendarContext.Provider>
