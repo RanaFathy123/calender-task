@@ -8,7 +8,6 @@ export const CalendarContext = createContext(null);
 
 // Create a Provider Component
 export const CalendarProvider = ({ children }) => {
-
   const [events, setEvents] = useState([
     { title: "Meeting with Team", date: "2024-08-05" },
     { title: "Doctor Appointment", date: "2024-08-08" },
@@ -26,7 +25,7 @@ export const CalendarProvider = ({ children }) => {
   day = day < 10 ? `0${day}` : day;
   const formattedDate = `${year}-${month}-${day}`;
 
-//  add event with inputs
+  //  add event with inputs
   const handleAddEvent = () => {
     if (formattedDate <= eventData.date && eventData.title != "") {
       setEvents([...events, eventData]);
@@ -37,6 +36,7 @@ export const CalendarProvider = ({ children }) => {
         text: "This Date Not Avaliable",
       });
     }
+    setEventData({ title: "", date: "" });
   };
   // add event with select
   const addEvent = (event) => {
