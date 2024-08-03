@@ -16,13 +16,20 @@ const Calender = () => {
       headerToolbar={{
         start: "today prev,next",
         center: "title",
-        end: "dayGridMonth,timeGridWeek,timeGridDay",
+        end:
+          window.innerWidth > 768
+            ? "dayGridMonth,timeGridWeek,timeGridDay"
+            : "dayGridMonth",
       }}
-      height="80vh"
+      height="auto"
       selectable={true}
       select={addEvent}
       events={events}
       eventClick={addEvent}
+      handleWindowResize={true} 
+      longPressDelay={1000} 
+      eventLongPressDelay={1000} 
+      selectLongPressDelay={1000} 
     />
   );
 };
