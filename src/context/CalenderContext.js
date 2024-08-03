@@ -15,16 +15,15 @@ export const CalendarProvider = ({ children }) => {
     { title: "Workshop", date: "2024-08-20" },
   ]);
   const [eventData, setEventData] = useState({ title: "", date: "" });
+  const date = new Date();
+  const year = date.getFullYear();
+  let month = date.getMonth() + 1;
+  let day = date.getDate();
+  month = month < 10 ? `0${month}` : month;
+  day = day < 10 ? `0${day}` : day;
+  const formattedDate = `${year}-${month}-${day}`;
+
   const handleAddEvent = () => {
-    const date = new Date();
-    const year = date.getFullYear();
-    let month = date.getMonth() + 1;
-    let day = date.getDate();
-
-    month = month < 10 ? `0${month}` : month;
-    day = day < 10 ? `0${day}` : day;
-
-    const formattedDate = `${year}-${month}-${day}`;
     if (formattedDate <= eventData.date && eventData.title != "") {
       setEvents([...events, eventData]);
     } else {
@@ -36,18 +35,6 @@ export const CalendarProvider = ({ children }) => {
     }
   };
   const addEvent = (event) => {
-    const date = new Date();
-    const year = date.getFullYear();
-    let month = date.getMonth() + 1;
-    let day = date.getDate();
-
-    month = month < 10 ? `0${month}` : month;
-    day = day < 10 ? `0${day}` : day;
-
-    const formattedDate = `${year}-${month}-${day}`;
-
-    console.log(event.startStr);
-
     if (formattedDate <= event.startStr) {
       setEvents([...events, { title: "Event", date: event.startStr }]);
     } else {
