@@ -23,6 +23,7 @@ const Calender = () => {
       select={addEvent}
       events={events}
       eventClick={addEvent}
+      longPressDelay={1000}
     />
   );
 };
