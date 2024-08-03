@@ -1,6 +1,6 @@
 "use client";
 // context/CalendarContext.js
-import React, { createContext, useContext, useState } from "react";
+import React, { createContext, useCallback, useContext, useState } from "react";
 import Swal from "sweetalert2";
 
 // Create a Context
@@ -8,13 +8,16 @@ export const CalendarContext = createContext(null);
 
 // Create a Provider Component
 export const CalendarProvider = ({ children }) => {
+
   const [events, setEvents] = useState([
     { title: "Meeting with Team", date: "2024-08-05" },
     { title: "Doctor Appointment", date: "2024-08-08" },
     { title: "Project Deadline", date: "2024-08-12" },
     { title: "Workshop", date: "2024-08-20" },
   ]);
+
   const [eventData, setEventData] = useState({ title: "", date: "" });
+  // today Date
   const date = new Date();
   const year = date.getFullYear();
   let month = date.getMonth() + 1;
@@ -23,6 +26,7 @@ export const CalendarProvider = ({ children }) => {
   day = day < 10 ? `0${day}` : day;
   const formattedDate = `${year}-${month}-${day}`;
 
+//  add event with inputs
   const handleAddEvent = () => {
     if (formattedDate <= eventData.date && eventData.title != "") {
       setEvents([...events, eventData]);
@@ -34,6 +38,7 @@ export const CalendarProvider = ({ children }) => {
       });
     }
   };
+  // add event with select
   const addEvent = (event) => {
     if (formattedDate <= event.startStr) {
       setEvents([...events, { title: "Event", date: event.startStr }]);
