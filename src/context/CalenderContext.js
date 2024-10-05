@@ -3,7 +3,7 @@
 import React, { createContext, useCallback, useState } from "react";
 import Swal from "sweetalert2";
 
-// Create a Context
+// Create a Context2
 export const CalendarContext = createContext(null);
 
 // Create a Provider Component
